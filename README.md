@@ -36,7 +36,7 @@ The category is below.
 
    
 
-3. Web & App
+3. Tech
 
    - HTML&CSS
 
