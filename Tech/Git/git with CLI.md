@@ -1,6 +1,6 @@
 # 🐙git with CLI
 
-
+[TOC]
 
 ## 1. git의 세 가지 목적
 
