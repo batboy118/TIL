@@ -1,8 +1,5 @@
 # Exercise 13.01
 
-The following function calls supposedly write a single newline character, but
-some are incorrect. Identify which calls don't work and explain why.
-
 (a) `printf("%c", '\n');`  
 (b) `printf("%c", "\n");`  
 (c) `printf("%s", '\n');`  
@@ -15,11 +12,11 @@ some are incorrect. Identify which calls don't work and explain why.
 (j) `puts("\n");`  
 (k) `puts("");`
 
+(a) OK
 
-### Solution
+(b) 타입이 맞지 않음 : `%c` : char  , "\n" : string 
 
-(b) will not work as `%c` expects a `char` and receives a `string`.  
-(c) will not work as `%s` expects a `string` and receives a `char`.  
+(c) 타입이 맞지 않음 : `%s` : string  , '\n' : char  
 (e) will not work as `printf` expects a `string`.  
 (h) will not work as `putchar` expects a `char`.  
 (i) will not work as `puts` expects a `string`.  

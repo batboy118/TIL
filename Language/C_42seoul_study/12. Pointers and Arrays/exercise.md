@@ -29,7 +29,7 @@ middle = (low + high) / 2;
 ```
 
 ### Solution
-The statement is illegal because pointers cannot be added together. The statement can be fixed by subtracting the pointers, which is legal:
+Pointer 끼리 더하는 연산은 할 수 없다.
 
 ```c
 middle = (high - low) / 2 + low;
@@ -54,9 +54,8 @@ while (p < q) {
 
 ### Solution
 
-```c
-{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
-```
+10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+
 
 # Exercise 12.04
 
@@ -67,17 +66,14 @@ use the pointer variable `top_ptr` instead of the integer variable `top`.
 
 ```c
 void make_empty(void) {
-
     top_ptr = &contents[0];
 }
 
 bool is_empty(void) {
-
     return top_ptr == &contents[0];
 }
 
 bool is_full(void) {
-
     return top_ptr = &contents[STACK_SIZE];
 }
 ```
