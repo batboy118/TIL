@@ -1,4 +1,4 @@
-# CSS
+# Basic Usage of CSS
 
 파일 이름 : styles.css
 
@@ -35,7 +35,7 @@ h1 {
 
   **괄호 내부에 있는 특성** 
 
-  반드시 ; 으로 끝나야 함
+  반드시 ; 으로 끝나야 함
 
 
 
@@ -144,7 +144,7 @@ html과 css를 연결하는 방법은 2가지가 있다.
 
    - href파일을 rel(relationship)관계로 link한다.
 
-   href와 rel순서가 바뀌어도 됨
+   href와 rel순서가 바뀌어도 됨
 
    ```css
    h1 {
@@ -225,7 +225,7 @@ box에는 4가지 요소가 있다.
   </div>
   ```
 
-  기본 padding과 마진은 0, 배경은 green, 높이는 전체를 지정함
+  기본 padding과 마진은 0, 배경은 green, 높이는 전체를 지정함
 
   ```css
   body,html{
@@ -608,3 +608,455 @@ flex는 부모박스에만 적용한다.
   `flex-wrap:wrap-reverse;`
 
   `flex-wrap:no-wrap-reverse;`
+
+
+
+## CSS Selectors and Pseudo Selectors
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Selectors and Pseudo Selectors</title>
+  
+  <style>
+  input[required="required"]{
+    background-color: red;
+  }
+  .box:nth-child(3n+2){
+    background-color: pink;
+  }
+  .container > .box{
+    background-color: yellow;
+  }
+  .box{
+    border:1px solid yellow;
+  }
+  .box{
+    background-color: green;
+    display: block;
+    height: 100px;
+    border:1px solid black;
+  }
+  .child{
+    width: 40px;
+  }
+  </style>
+    
+</head>
+    
+<body>
+<div class="container">
+  <div class="box">
+    <div class="box child"></div>
+  </div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box">
+    <input type="password" required="required" />
+    <input type="submit" required="required" />
+  </div>
+</div>
+</body>
+    
+</html>
+```
+
+ID나 Class를 쓰지 않고, 원하는 요소를 선택할 수 있는 방법이 있다.
+
+- pseudo-selector(가상 셀럭터)
+
+  셀렉터 이지만, element가 아닌것을 의미한다.
+
+  예) input[type=" "] 을 사용해서 특정 태그+내부 내용을 가지고 선택하여 스타일 지정 가능
+
+  ```html
+  <head>
+  <style>
+      input[type="submit"]{
+          background-color: red;
+      }
+      input[type="password"]{
+  		background-color: yellow;
+        	border:1px solid black;
+  	}
+  </style>  
+  </head>
+  
+  <body>
+      <div class="box">
+          <input type="password">
+          <input type="submit">
+      </div>
+  </body>
+  ```
+
+  예) 특정 이름을 지정할 수도 있다. 아래 예시에서는 required와 abc라는 이름을 사용했다.
+
+  ```html
+  <head>
+  <style>
+      input[required="required"]{
+          background-color: red;
+      }
+      input[abc="abc"]{
+  		background-color: yellow;
+        	border:1px solid black;
+  	}
+  </style>  
+  </head>
+  
+  <body>
+      <div class="box">
+          <input type="password" required="required">
+          <input type="submit" abc="abc">
+      </div>
+  </body>
+  ```
+
+- 자식 박스 중 특정 박스만 다른 스타일을 주는 방법
+
+  - 마지막 박스에 특성 주기
+
+    ```css
+    .box: last-child{
+    	    background-color: pink;
+    }
+    ```
+
+  - 첫 번째 박스에 특성 주기
+
+    ```css
+    .box: first-child{
+    	 background-color: pink;
+    }
+    ```
+
+  - n 번째 박스에 특성 주기
+
+    연습 : http://www.topdesignagencies.com/nth-test/
+    
+    ```css
+    .box: nth-child(2){     /*2번째 박스에 특성 주기*/
+    	 background-color: pink;
+}
+    ```
+    
+    ```css
+    .box: nth-child(2n){     /*2의 배수 박스에 특성 주기*/
+    	 background-color: pink;
+}
+    ```
+    
+    ```css
+    .box: nth-child(3n){     /*3의 배수 박스에 특성 주기*/
+    	 background-color: pink;
+}
+    ```
+    
+    ```css
+    .box: nth-child(2n+1){     /*1번째 부터 시작해서 매 두번째 (홀수번째) 박스에 특성 주기*/
+    	 background-color: pink;
+}
+    ```
+
+
+- direct child (직계 자식에게만 적용됨)
+
+  `input > .box`  : input 바로 아래에 있는 box에만 적용된다. box 밑의 box들에는 적용 안됨
+
+- 원하는 패턴이 나왔을 때(형제)  : + 사용
+
+  `input + .box` : input 태그 다음에 .box 클래스가 있는 경우를 모두 찾아 .box에 속성 적용
+
+  `input + .box + .box` : input + .box + .box구조를 모두 찾아 가장 각각 마지막 box에만 속서 적용 
+
+- class로 여러가지 속성 부여 가능
+
+  `class = "box child"`인경우, box와 child 두개의 class를 사용하는 것과 같다. 
+
+
+
+## Element States with CSS
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS States</title>
+  <style>
+  .box{
+    background-color: red;
+    font-size: 40px;
+  }
+  .box:hover{
+    background-color: pink;
+  }
+  .box:active{
+    background-color: green;
+  }
+ .box:focus{
+    background-color: blue;
+  }
+  input:focus{
+    background-color:blue;
+  }
+  a:visited{
+    color: yellow;
+  }
+  </style>
+</head>
+<body>
+  <input type="text">
+  <span class="box">lalalalalala</span>
+  <textarea class="box">lalalalalala</textarea>
+  <a href="http://kakao.com">Naver</a>
+</body>
+</html>
+```
+
+- hover : 화살표 대상에 올리면 hover속성이 적용됨
+- active : 클릭하면 active 속성이 적용됨
+- focus : 클릭하면 색이 바뀜 active와 hover보다 우선됨 (input이나 textarea와 같은 선택이 가능한 영역에 적용됨)
+- visited : 한 번 눌린 링크의 속성을 변경함
+
+
+
+# Advanced Usage of CSS
+
+## Transitions
+
+이동, 변경에 효과를 주는 것
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Transitions</title>
+  <style>
+  .box{
+    background-color: green;
+    color:white;
+    transition:all .5s ease-in-out;
+  }
+  .box:hover{
+    background-color: red;
+    color:blue;
+  }
+  </style>
+</head>
+<body>
+  <span class="box">
+    Text
+  </span>
+</body>
+</html>
+```
+
+- hover, active, passived의 state에 애니메이션 효과를 준다. (visited는 적용 안됨)
+
+  `transition : 변경할 속성 시간 애니메이션`
+
+  - `	transition: background-color 5s ease-in-out;`  	
+
+    백그라운드 속성이 5초안에 바뀌는 것 (ease-in-out : 생겼다가 사라지는 효과)
+
+  - `transition:all .5s ease-in-out;`
+
+    모든 속성을 0.5초안에 바꿈 
+
+​	
+
+## Transformations
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Transformations</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background: red;
+      transition: transform .5s ease-in-out;
+    }
+    .box:hover{
+      transform: rotate(1turn) scale(.5, .5);
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
+```
+
+- transform 관련 기능 : https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+
+- rotate, scale 등 사용 가능
+
+  20도 회전
+
+  ```css
+  transform: rotate(20deg);
+  ```
+
+  transition이랑 같이 사용하면 애니메이션 효과도 줄 수 있다.
+
+  ```css
+   .box{
+        width: 100px;
+        height: 100px;
+        background: red;
+        transition: transform .5s ease-in-out;
+      }
+      .box:hover{
+        transform: rotate(1turn) scale(.5, .5);
+      }
+  ```
+
+
+
+## Animations
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Transformations</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background: red;
+      animation: 1.5s scaleAndRotateSquare infinite ease-in-out;
+    }
+    /*@keyframes scaleAndRotateSquare {
+      from{
+		transform:none;
+      }
+      to{
+		transform: rotate(1turn) scale(.5, .5);
+      }
+    }*/
+    @keyframes scaleAndRotateSquare {
+      0%{
+        transform:none;
+      }
+      50%{
+        transform: rotate(1turn) scale(.5, .5);
+        color:white;
+      }
+      100%{
+        transform: none;
+        color:blue;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">11</div>
+</body>
+</html>
+```
+
+-  @keyframes 애니메이션 이름
+
+  두 단계에서는 from, to 만 사용
+
+  infinite를 쓰면 무한 반복, 안쓰면 새로고침할 때 마다 한번 실행
+
+  ```css
+  .box{
+        width: 100px;
+        height: 100px;
+        background: red;
+        animation: 1.5s scaleAndRotateSquare infinite ease-in-out;
+      }
+      @keyframes scaleAndRotateSquare {
+        from{
+  		transform:none;
+        }
+        to{
+  		transform: rotate(1turn) scale(.5, .5);
+        }
+      }
+  ```
+
+- 여러 단계를 표시하고 싶으면, %로 구분
+
+  ```css
+  @keyframes scaleAndRotateSquare {
+        0%{
+          transform:none;
+        }
+        50%{
+          transform: rotate(1turn) scale(.5, .5);
+          color:white;
+        }
+        100%{
+          transform: none;
+          color:blue;
+        }
+      }
+  ```
+
+
+
+## Media Queries
+
+[Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+
+브라우저의 크기가 다 다름 : 넓은 화면, 좁은 화면, 스마트폰, 노트북, 태블릿 등등
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Media Queries</title>
+  <style>
+  body{
+    background-color: green;
+  }
+  @media screen and (min-width:320px) and (max-width:640px){
+    body{
+      background-color: blue;
+    }
+  }
+  </style>
+</head>
+<body>
+</body>
+</html>
+```
+
+- `@media screen and (min-width:320px) and (max-width:640px)`
+
+  넓이가 320 - 640 사이인 경우 아래의 속성 적용
+
+  이것을 활용해서 반응형 웹을 만들 수 있다.
