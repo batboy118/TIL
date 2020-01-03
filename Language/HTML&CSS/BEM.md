@@ -22,15 +22,11 @@
 
   Blocks, Elements and Modifiers
 
-  
-
 # BEM
 
-BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다. 
+BEM의 장점 : 단순하지만, 좋은 구조를 가지고있다.
 
 **BEM 방법론은 ID에는 사용할 수 없고, 오직 클래스명에만 활용할 수 있다는 점**에 주의
-
-
 
 - **Block**
 
@@ -62,38 +58,37 @@ BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다.
 
 ```html
 <button class="button">
-	Normal button
+  Normal button
 </button>
 <button class="button button--state-success">
-	Success button
+  Success button
 </button>
 <button class="button button--state-danger">
-	Danger button
+  Danger button
 </button>
 ```
 
 - CSS
 
 ```css
-.button {    /*모든 button 적용됨*/
-	display: inline-block;
-	border-radius: 3px;
-	padding: 7px 12px;
-	border: 1px solid #D5D5D5;
-	background-image: linear-gradient(#EEE, #DDD);
-	font: 700 13px/18px Helvetica, arial;
+.button {
+  /*모든 button 적용됨*/
+  display: inline-block;
+  border-radius: 3px;
+  padding: 7px 12px;
+  border: 1px solid #d5d5d5;
+  background-image: linear-gradient(#eee, #ddd);
+  font: 700 13px/18px Helvetica, arial;
 }
 .button--state-success {
-	color: #FFF;
-	background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
-	border-color: #4A993E;
+  color: #fff;
+  background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;
+  border-color: #4a993e;
 }
 .button--state-danger {
-	color: #900;
+  color: #900;
 }
 ```
-
-
 
 ## Benefits
 
@@ -113,13 +108,11 @@ BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다.
 
   BEM methodology gives your CSS code a solid structure that remains simple and easy to understand.
 
-
-
 ## Key Concepts
 
 #### **Block**
 
-블럭이란, 기능적으로 독립적인 페에지 상의 요소 하나하나를 의미한다. 
+블럭이란, 기능적으로 독립적인 요소 하나하나를 의미한다.
 
 블럭은 behavior, templates, styles 등의 implementation을 포함하고 있다.
 
@@ -133,11 +126,11 @@ BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다.
 
 ![Head block components](https://en.bem.info/kFetIbKxQdABHhUecbic45Il0Bg.png)
 
-블럭 요소는 클래스의 어근을 형성하고 항상 맨 앞에 위치하도록 합니다. 
+블럭 요소는 클래스의 어근을 형성하고 항상 맨 앞에 위치하도록 합니다.
 
 일단 블럭을 정의하면, 블럭이 형성한 클래스의 어근을 맨 앞에 붙여 그 블럭이 포함하는 요소들의 클래스명을 짓기 시작하면 되는 것입니다.
 
-블럭 요소는 클래스의 어근을 형성하고 항상 맨 앞에 위치하도록 합니다. 
+블럭 요소는 클래스의 어근을 형성하고 항상 맨 앞에 위치하도록 합니다.
 
 일단 블럭을 정의하면, 블럭이 형성한 클래스의 어근을 맨 앞에 붙여 그 블럭이 포함하는 요소들의 클래스명을 짓기 시작하면 되는 것입니다/
 
@@ -159,8 +152,6 @@ BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다.
 
 ![Online store products](https://en.bem.info/VBlEdksG7XkL4DLPWe4rcYb5hGo.png)
 
-
-
 #### Element
 
 블럭의 외부에서 사용될 수 없는 구성 요소
@@ -168,8 +159,6 @@ BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다.
 예를 들면, 메뉴 item은 ment 블럭의 외부에서 사용되지 않는다. 그렇게 때문에 메뉴 itemㅇㄴ elemnet이다.
 
 ![Menu items](https://en.bem.info/cPrdQL4EZZdhPIrcYOayygPBSm4.png)
-
-
 
 #### Modifier
 
@@ -185,13 +174,9 @@ modifier는 HTML의 특성과 비슷하다. modifier를 이용해서 같은 블�
 
 modifier는 runtime 동안에 바뀔 수 있다. 예를 들면, 잘못된 입력값을 주고 sign in 버튼을 누르면 (버튼을 누르는 것이 DOM 이벤트), 에러메세지를 보여줄 수 있다.
 
-
-
 #### BEM entity
 
 block, elements, modifers를 BEM entity라 부른다.
-
-
 
 #### Mix
 
@@ -220,19 +205,19 @@ link블럭을 통해 링크가 설정되어 있을 경우를 가정해보면 몇
 
 ```html
 <header class="header">
-    <img class="logo">
-    <form class="search-form">
-        <input class="input">
-        <button class="button"></button>
-    </form>
-    <ul class="lang-switcher">
-        <li class="lang-switcher__item">
-            <a class="lang-switcher__link" href="url">en</a>
-        </li>
-        <li class="lang-switcher__item">
-            <a class="lang-switcher__link" href="url">ru</a>
-        </li>
-    </ul>
+  <img class="logo" />
+  <form class="search-form">
+    <input class="input" />
+    <button class="button"></button>
+  </form>
+  <ul class="lang-switcher">
+    <li class="lang-switcher__item">
+      <a class="lang-switcher__link" href="url">en</a>
+    </li>
+    <li class="lang-switcher__item">
+      <a class="lang-switcher__link" href="url">ru</a>
+    </li>
+  </ul>
 </header>
 ```
 
@@ -275,38 +260,29 @@ header
 
 ```json
 {
-    block: 'header',
-    content : [
-        { block : 'logo' },
+  "block": "header",
+  "content": [
+    { "block": "logo" },
+    {
+      "block": "search-form",
+      "content": [{ "block": "input" }, { "block": "button" }]
+    },
+    {
+      "block": "lang-switcher",
+      "content": [
         {
-            block : 'search-form',
-            content : [
-                { block : 'input' },
-                { block : 'button' }
-            ]
+          "elem": "item",
+          "content": [{ "elem": "link" }]
         },
         {
-            block : 'lang-switcher',
-            content : [
-                {
-                    elem : 'item',
-                    content : [
-                        { elem : 'link' }
-                    ]
-                },
-                {
-                    elem : 'item',
-                    content : [
-                        { elem : 'link' }
-                    ]
-                }
-            ]
+          "elem": "item",
+          "content": [{ "elem": "link" }]
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
-
-
 
 #### Block implementation
 
@@ -320,8 +296,6 @@ header
 - description of dependencies
 - additional data (e.g., images).
 
-
-
 #### Implementation technology
 
 Block implementation에 사용되는 기술
@@ -331,15 +305,11 @@ Block implementation에 사용되는 기술
 - templates — BEMHTML, BH, Pug, Handlebars, XSL
 - documentation — Markdown, Wiki, XML.
 
-예를 들면, 어떤 블럭이 CSS로 디자인이 정의되어 있으면, 그 블럭은 CSS 기술로 implemented 되었다고 한다. 
-
-
+예를 들면, 어떤 블럭이 CSS로 디자인이 정의되어 있으면, 그 블럭은 CSS 기술로 implemented 되었다고 한다.
 
 #### Block redefinition
 
 다른 레벨에서 블럭에 새로운 특성을 추가함으로, 블럭 implementation을 수정하는 것
-
-
 
 #### Redefinition level
 
@@ -357,7 +327,7 @@ entity의 집합 또는 부분적 implementation
 
 - block 이름은 블럭이 목적을 묘사한다. (상태를 묘사하지 않는다.)
 
-  ​	ex) menu or button (not red or gib)
+  ​ ex) menu or button (not red or gib)
 
 ```html
 <!-- Correct. The `error` block is semantically meaningful -->
@@ -366,8 +336,6 @@ entity의 집합 또는 부분적 implementation
 <!-- Incorrect. It describes the appearance -->
 <div class="red-text"></div>
 ```
-
-
 
 - 블록의 재사용성이나 블록이 움직일 때 필요한 독립성을 보장하기 위해 아래 두 가지를 지켜야 함
 
@@ -379,20 +347,18 @@ entity의 집합 또는 부분적 implementation
 
   블럭은 서로 포함관계 일 수 있다.
 
-  여러 단계로 포함될 수 있다. 
+  여러 단계로 포함될 수 있다.
 
 ```html
-   <!-- `header` block -->
-    <header class="header">
-        <!-- Nested `logo` block -->
-        <div class="logo"></div>
+<!-- `header` block -->
+<header class="header">
+  <!-- Nested `logo` block -->
+  <div class="logo"></div>
 
-        <!-- Nested `search-form` block -->
-        <form class="search-form"></form>
-    </header>
+  <!-- Nested `search-form` block -->
+  <form class="search-form"></form>
+</header>
 ```
-
-
 
 #### Element
 
@@ -400,17 +366,18 @@ entity의 집합 또는 부분적 implementation
 
 - element 이름은 목적으로 기술되어야 한다.(상태를 기술하면 안된다.)
 
-  ex)  text or item (not red or gib)
-- element의 풀네임의 구조는  `block-name__element-name` 이고, `__`로 구분된다. (double underscore)
+  ex) text or item (not red or gib)
+
+- element의 풀네임의 구조는 `block-name__element-name` 이고, `__`로 구분된다. (double underscore)
 
   ```html
   <!-- `search-form` block -->
   <form class="search-form">
-      <!-- `input` element in the `search-form` block -->
-      <input class="search-form__input">
-  
-      <!-- `button` element in the `search-form` block -->
-      <button class="search-form__button">Search</button>
+    <!-- `input` element in the `search-form` block -->
+    <input class="search-form__input" />
+
+    <!-- `button` element in the `search-form` block -->
+    <button class="search-form__button">Search</button>
   </form>
   ```
 
@@ -426,25 +393,25 @@ entity의 집합 또는 부분적 implementation
       `block-name__element-name`
   -->
   <form class="search-form">
-      <div class="search-form__content">
-          <input class="search-form__input">
-  
-          <button class="search-form__button">Search</button>
-      </div>
+    <div class="search-form__content">
+      <input class="search-form__input" />
+
+      <button class="search-form__button">Search</button>
+    </div>
   </form>
-  
+
   <!--
       Incorrect. The structure of the full element name doesn't follow the pattern:
       `block-name__element-name`
   -->
   <form class="search-form">
-      <div class="search-form__content">
-          <!-- Recommended: `search-form__input` or `search-form__content-input` -->
-          <input class="search-form__content__input">
-  
-          <!-- Recommended: `search-form__button` or `search-form__content-button` -->
-          <button class="search-form__content__button">Search</button>
-      </div>
+    <div class="search-form__content">
+      <!-- Recommended: `search-form__input` or `search-form__content-input` -->
+      <input class="search-form__content__input" />
+
+      <!-- Recommended: `search-form__button` or `search-form__content-button` -->
+      <button class="search-form__content__button">Search</button>
+    </div>
   </form>
   ```
 
@@ -454,16 +421,14 @@ entity의 집합 또는 부분적 implementation
 
   ```html
   <div class="block">
-      <div class="block__elem1">
-          <div class="block__elem2">
-              <div class="block__elem3"></div>
-          </div>
+    <div class="block__elem1">
+      <div class="block__elem2">
+        <div class="block__elem3"></div>
       </div>
+    </div>
   </div>
   ```
 
-  
+* Membership
 
-- Membership
-
-- Optionality
+* Optionality
