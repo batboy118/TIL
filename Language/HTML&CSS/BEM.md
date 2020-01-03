@@ -119,7 +119,7 @@ BEM의 장점 :  단순하지만, 좋은 구조를 가지고있다.
 
 #### **Block**
 
-블럭이란, 기능적으로 독립적인 요소 하나하나를 의미한다. 
+블럭이란, 기능적으로 독립적인 페에지 상의 요소 하나하나를 의미한다. 
 
 블럭은 behavior, templates, styles 등의 implementation을 포함하고 있다.
 
@@ -347,3 +347,123 @@ entity의 집합 또는 부분적 implementation
 
 ![Redefinition level](https://en.bem.info/kqvCO2ZXeivuLHCbn2to5chFZrM.png)
 
+## Quick Start
+
+#### Block
+
+- 기능적으로 독립된 재사용이 가능한 페이지 구성요소
+
+- HTML에서 블럭은 class로 표현된다.
+
+- block 이름은 블럭이 목적을 묘사한다. (상태를 묘사하지 않는다.)
+
+  ​	ex) menu or button (not red or gib)
+
+```html
+<!-- Correct. The `error` block is semantically meaningful -->
+<div class="error"></div>
+
+<!-- Incorrect. It describes the appearance -->
+<div class="red-text"></div>
+```
+
+
+
+- 블록의 재사용성이나 블록이 움직일 때 필요한 독립성을 보장하기 위해 아래 두 가지를 지켜야 함
+
+  블록은 자신의 환경에 영향을 끼칠 수 없다. 예를 들어 블록의 positioning(top, left..)이나 margin 값과 같은 외부 기하학적 요소를 설정할 수 없다.
+
+  또한, BEM을 사용할 때 CSS 태그나 ID 셀렉터를 사용할 수 없습니다.
+
+- Nesting
+
+  블럭은 서로 포함관계 일 수 있다.
+
+  여러 단계로 포함될 수 있다. 
+
+```html
+   <!-- `header` block -->
+    <header class="header">
+        <!-- Nested `logo` block -->
+        <div class="logo"></div>
+
+        <!-- Nested `search-form` block -->
+        <form class="search-form"></form>
+    </header>
+```
+
+
+
+#### Element
+
+- block의 구성 파트로 블럭과 따로 사용될 수 없다
+
+- element 이름은 목적으로 기술되어야 한다.(상태를 기술하면 안된다.)
+
+  ex)  text or item (not red or gib)
+- element의 풀네임의 구조는  `block-name__element-name` 이고, `__`로 구분된다. (double underscore)
+
+  ```html
+  <!-- `search-form` block -->
+  <form class="search-form">
+      <!-- `input` element in the `search-form` block -->
+      <input class="search-form__input">
+  
+      <!-- `button` element in the `search-form` block -->
+      <button class="search-form__button">Search</button>
+  </form>
+  ```
+
+- Nesting
+
+  - Elements 서로 포함 될 수 있다
+  - 어떤 깊이의 네스팅 레벨이던지 가질 수 있다.
+  - element는 항상 block의 한 부분이다. 혼자서 쓰일 수 없다. 이 말은 element의 이름은 계층적 구조로 될 수 없음을 의미한다. (틀린 예시 `block__elem1__elem2`)
+
+  ```html
+  <!--
+      Correct. The structure of the full element name follows the pattern:
+      `block-name__element-name`
+  -->
+  <form class="search-form">
+      <div class="search-form__content">
+          <input class="search-form__input">
+  
+          <button class="search-form__button">Search</button>
+      </div>
+  </form>
+  
+  <!--
+      Incorrect. The structure of the full element name doesn't follow the pattern:
+      `block-name__element-name`
+  -->
+  <form class="search-form">
+      <div class="search-form__content">
+          <!-- Recommended: `search-form__input` or `search-form__content-input` -->
+          <input class="search-form__content__input">
+  
+          <!-- Recommended: `search-form__button` or `search-form__content-button` -->
+          <button class="search-form__content__button">Search</button>
+      </div>
+  </form>
+  ```
+
+  - 블록 이름을 namespace로 정의합니다. 이 namespace는 element들에게 block에 의존하고 있는 것을 보장합니다. (`block__elem`)
+
+  - 한 블록은 DOM tree에서 여러 개로 중첩된 element들을 가질 수 있습니다.
+
+  ```html
+  <div class="block">
+      <div class="block__elem1">
+          <div class="block__elem2">
+              <div class="block__elem3"></div>
+          </div>
+      </div>
+  </div>
+  ```
+
+  
+
+- Membership
+
+- Optionality
