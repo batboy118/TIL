@@ -112,7 +112,12 @@ BEM의 장점 : 단순하지만, 좋은 구조를 가지고있다.
 
 #### **Block**
 
+<<<<<<< HEAD
 블럭이란, 기능적으로 독립적인 요소 하나하나를 의미한다.
+=======
+블럭이란, 기능적으로 독립적인 페이지 상의 요소 하나하나를 의미한다.
+
+> > > > > > > 3186c9e... HTML & CSS 학습
 
 블럭은 behavior, templates, styles 등의 implementation을 포함하고 있다.
 
@@ -305,7 +310,12 @@ Block implementation에 사용되는 기술
 - templates — BEMHTML, BH, Pug, Handlebars, XSL
 - documentation — Markdown, Wiki, XML.
 
+<<<<<<< HEAD
 예를 들면, 어떤 블럭이 CSS로 디자인이 정의되어 있으면, 그 블럭은 CSS 기술로 implemented 되었다고 한다.
+=======
+예를 들면, 어떤 블럭이 CSS로 디자인이 정의되어 있으면, 그 블럭은 CSS 기술로 implemented 되었다고 한다.
+
+> > > > > > > 3186c9e... HTML & CSS 학습
 
 #### Block redefinition
 
@@ -347,7 +357,12 @@ entity의 집합 또는 부분적 implementation
 
   블럭은 서로 포함관계 일 수 있다.
 
-  여러 단계로 포함될 수 있다.
+<<<<<<< HEAD
+여러 단계로 포함될 수 있다.
+=======
+여러 단계로 포함될 수 있다.
+
+> > > > > > > 3186c9e... HTML & CSS 학습
 
 ```html
 <!-- `header` block -->
@@ -366,9 +381,16 @@ entity의 집합 또는 부분적 implementation
 
 - element 이름은 목적으로 기술되어야 한다.(상태를 기술하면 안된다.)
 
+<<<<<<< HEAD
+ex) text or item (not red or gib)
+
+- # element의 풀네임의 구조는 `block-name__element-name` 이고, `__`로 구분된다. (double underscore)
+
   ex) text or item (not red or gib)
 
 - element의 풀네임의 구조는 `block-name__element-name` 이고, `__`로 구분된다. (double underscore)
+
+  > > > > > > > 3186c9e... HTML & CSS 학습
 
   ```html
   <!-- `search-form` block -->
@@ -381,7 +403,7 @@ entity의 집합 또는 부분적 implementation
   </form>
   ```
 
-- Nesting
+- **Nesting**
 
   - Elements 서로 포함 될 수 있다
   - 어떤 깊이의 네스팅 레벨이던지 가질 수 있다.
@@ -429,6 +451,232 @@ entity의 집합 또는 부분적 implementation
   </div>
   ```
 
-* Membership
+  - 그러나 블럭구조는 BEM 방법에서 항상 flat한 elements의 리스트를 가진다.
 
-* Optionality
+  ```
+  .block {}
+  .block__elem1 {}
+  .block__elem2 {}
+  .block__elem3 {}
+  ```
+
+  - 이것은 각각의 분리된 element에 대해 코드의 변화없이 블록의 DOM 구조를 변화시키는 것을 허락한다.
+
+  ```html
+  <div class="block">
+    <div class="block__elem1">
+      <div class="block__elem2"></div>
+    </div>
+
+    <div class="block__elem3"></div>
+  </div>
+  ```
+
+  - block의 구조는 바뀌었지만, element와 이름은 동일하게 남아 있다.
+
+* **Membership**
+
+  - 하나의 element는 항상 블럭의 파트이고, 블럭으로 부터 따로 사용해서는 안된다.
+
+  ```html
+  <!-- Correct. Elements are located inside the `search-form` block -->
+  <!-- `search-form` block -->
+  <form class="search-form">
+    <!-- `input` element in the `search-form` block -->
+    <input class="search-form__input" />
+
+    <!-- `button` element in the `search-form` block -->
+    <button class="search-form__button">Search</button>
+  </form>
+
+  <!--
+      Incorrect. Elements are located outside of the context of
+      the `search-form` block
+  -->
+  <!-- `search-form` block -->
+  <form class="search-form"></form>
+
+  <!-- `input` element in the `search-form` block -->
+  <input class="search-form__input" />
+
+  <!-- `button` element in the `search-form` block-->
+  <button class="search-form__button">Search</button>
+  ```
+
+- **Optionality**
+
+  - element는 선택적으로 사용하는 것으로, 모든 블럭이 element를 가지는 것은 아니다.
+
+  ```html
+  <!-- `search-form` block -->
+  <div class="search-form">
+    <!-- `input` block -->
+    <input class="input" />
+
+    <!-- `button` block -->
+    <button class="button">Search</button>
+  </div>
+  ```
+
+#### Should I create a block or an element?
+
+- **Create a block**
+
+  만약, 코드가 재사용되고, 다른 구성요소와 독립적이라면 블럭을 생성
+
+- **Create an elemnet**
+
+  만약, 코드가 블럭(부모 entity)과 따로 사용될 수 없다면 element를 생성
+
+- 하지만 간소화한 개발을 위하여 작은 부분들로 분리되어야 하는 element들은 예외입니다. BEM 방법론에서 element 들의 element 들은 만들 수 없습니다. 이와 같은 경우, element를 만드는 것 대신에 service 블록을 만들어야 합니다.
+
+#### Modifier
+
+- 블럭과 element의 외형과 state, 행동을 정의하는 entity
+
+- Modifier name은 외형이나 사애 또는 행동을 묘사함
+
+- block\_\_element_modifier 이름을 가짐 (\_로 구분함, single underscore)
+
+- **Types of Modifiers**
+
+  - Boolean
+    - modifier의 유무가 중요할 때 사용된다. 예를 들어, 값이 상관없으면 `disabled` , Boolean modifier가 나타난다면 그 값은 `true` 로 가정할 수 있다.
+    - modifier는 아래 두 가지 이름을 가질 수 있다.
+      1. `block-name_modifier-name`
+      2. `block-name__element-name_modifier-name`
+
+  ```html
+  <!-- The `search-form` block has the `focused` Boolean modifier -->
+  <form class="search-form search-form_focused">
+    <input class="search-form__input" />
+
+    <!-- The `button` element has the `disabled` Boolean modifier -->
+    <button class="search-form__button search-form__button_disabled">
+      Search
+    </button>
+  </form>
+  ```
+
+* Key-value
+  - modifier의 값이 중요할 때 사용한다. 예를 들어, `islands` 디자인 테마와 함께 사용되는 메뉴에 `menu_theme_islands`
+  - modifier는 아래 두가지 이름을 가진다.
+    - `block-name_modifier-name_modifier-value`
+    - `block-name__element-name_modifier-name_modifier-value`
+
+```html
+<!-- The `search-form` block has the `theme` modifier with the value `islands` -->
+<form class="search-form search-form_theme_islands">
+  <input class="search-form__input" />
+
+  <!-- The `button` element has the `size` modifier with the value `m` -->
+  <button class="search-form__button search-form__button_size_m">Search</button>
+</form>
+
+<!-- You can't use two identical modifiers with different values simultaneously -->
+<form
+  class="search-form
+             search-form_theme_islands
+             search-form_theme_lite"
+>
+  <input class="search-form__input" />
+
+  <button
+    class="search-form__button
+                   search-form__button_size_s
+                   search-form__button_size_m"
+  >
+    Search
+  </button>
+</form>
+```
+
+- modifier는 혼자서 쓰일 수 없다.
+
+  ```html
+  <!--
+      Correct. The `search-form` block has the `theme` modifier with
+      the value `islands`
+  -->
+  <form class="search-form search-form_theme_islands">
+    <input class="search-form__input" />
+
+    <button class="search-form__button">Search</button>
+  </form>
+
+  <!-- Incorrect. The modified class `search-form` is missing -->
+  <form class="search-form_theme_islands">
+    <input class="search-form__input" />
+
+    <button class="search-form__button">Search</button>
+  </form>
+  ```
+
+  [Why write the block name in the names of modifiers and elements?](https://en.bem.info/methodology/faq/#why-include-the-block-name-in-modifier-and-element-names)
+
+#### Mix
+
+- single DOM node에서 서로 다른 BEM entity를 사용하는 기술
+
+- Mix를 사용하면
+  - 다수의 엔티티의 행동과 스타일을 코드의 중첩없이 결합가능
+  - 이미 존재하는 UI 컴포넌트를 기반으로 의미를 가진 새로운 UI 컴포넌트를 만들수 있음
+
+```html
+<!-- `header` block -->
+<div class="header">
+  <!--
+        The `search-form` block is mixed with the `search-form` element
+        from the `header` block
+    -->
+  <div class="search-form header__search-form"></div>
+</div>
+```
+
+이 접근 방식을 통해 `search-form` 블록 자체는 보편적인 상태로 유지하면서 `header__search-form` elemnet의 외부 형상 및 위치를 설정할 수 있다.
+
+결과적으로, 우리는 어떤 다른 환경에서도 `search-form` block을 사용할 수 있다. 왜냐하면 그것은 어떤 패딩도 명시하지 않기 때문이다. 이것이 우리가 그것을 독립적이라고 부를 수 있는 이유다.
+
+#### File structure
+
+- BEM 방법론에서 채택 된 컴포넌트 접근법은 또한 프로젝트의 파일구조에도 적용된다. block과 element, modifier의 구현은 독립적인 기술 파일들로 분리되며, 독립된 파일들을 각각 따로 연결할 수 있다.
+
+- 하나의 block은 하나의 디렉토리에 상응한다.
+- block과 directory는 같은 이름을 가진다. 예를 들어, `header` block은 `header/` directory안에, 있고 `menu` block은 `menu/` directory 안에 있다.
+- block들의 구현체는 독립된 기술 파일들로 나뉘어진다. 예를 들어, `header.css`와 `header.js`로 구성된다.
+- block directory는 block의 element들과 modifier들이 위치한 subdirectory의 root directory이다.
+- element directory의 이름은 이중 underscore(`__`)로 시작한다. 예를 들어, `header/__logo` 나 `menu/__item/` 과 같다.
+- modifier directory의 이름은 단일 underscore(`_`)로 시작한다. 예를 들어, `header/_fixed/` 와 `menu/_theme_islands/` 와 같다.
+- element들과 modifier의 구현체는 각각 기술 파일들로 나누어진다. 예를 들어, `header__input.js`와 `header_theme_islands.css` 와 같다.
+
+```
+search-form/                           # Directory of the search-form
+
+    __input/                           # Subdirectory of the search-form__input
+        search-form__input.css         # CSS implementation of the
+                                       # search-form__input element
+        search-form__input.js          # JavaScript implementation of the
+                                       # search-form__input element
+
+    __button/                          # Subdirectory of the search-form__button
+                                       # element
+        search-form__button.css
+        search-form__button.js
+
+    _theme/                            # Subdirectory of the search-form_theme
+                                       # modifier
+        search-form_theme_islands.css  # CSS implementation of the search-form block
+                                       # that has the theme modifier with the value
+                                       # islands
+        search-form_theme_lite.css     # CSS implementation of the search-form block
+                                       # that has the theme modifier with the value
+                                       # lite
+
+    search-form.css                    # CSS implementation of the search-form block
+    search-form.js                     # JavaScript implementation of the
+                                       # search-form block
+```
+
+위와 같은 파일 구조는 코드의 재사용성을 높인다.
+
+위의 파일 구조는 추천 사항이지 필수 사항이 아니며, 다른 대안의 프로젝트 구조를 사용 할 수 있다. 또한, 파일을 구성하기 위한 BEM 원칙을 따르기만 해도 된다.
