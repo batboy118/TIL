@@ -2,7 +2,7 @@
 
 ## 1교시: 딥러닝 개관
 
-### 딥러닝의 문제들
+### 딥러닝의 문제들
 
 1. 과적합 (Overfitting)
 
@@ -12,7 +12,7 @@
 
 
 
-### 기울기 소실
+### 기울기 소실
 
 **기울기 소실(Vanishing Gradient) and 활성함수(Activation Function)** 
 
@@ -29,7 +29,7 @@
   - 해결법은 MLP! 공각은 왜곡(2차원을 3차원으로, 즉 차원을 늘린다.)
 
 - Multi Layer Perceptron(MLP)
-  - 레이어가 많기 때문에 '딥'러닝이라 한다.
+  - 레이어가 많기 때문에 '딥'러닝이라 한다.
 - Activation Function
   - 판단하는 함수
   - 1 또는 0 (Yes or No)
@@ -37,14 +37,14 @@
 
 ### 
 
-## 2교시 : 한국어 임베딩 4장 : BERT 구동해보기
+## 2교시 : 한국어 임베딩 4장 : BERT 구동해보기
 
 ### 목차
 
 - 단어 단위 임베딩 : word-embedding
   - King-man + Woman = ? : word2vec
   - assume과 assumpton 그렇게 다른가요? : FastText
-  - 주변 단어만 고려한다고요? : Glove
+  - 주변 단어만 고려한다고요? : Glove
 
 - 문장 단위 임베딩 : laguage model
   - BERT의 탄생 : RNN ~ Transfromer 
@@ -61,19 +61,17 @@
 
 ​	[0, 1, 0] : 모든
 
-    [0, 0, 1] : 사람
+    [0, 0, 1] : 사람
 
 - 단점 : 단어 사이의 유사도 측정을 못함 ( 의미를 부여하기 힘들다 )
   - 단어 사이의 모든 각도가 90도이기 때문에 코사인 유사도를 사용하기 어렵다.
 - One-Hot vector를 압축해서 Embedding vector를 구해서 문제를 해결함
 
-### 무슨 정보를 이용해 단어를 표현할 건지?
+### 무슨 정보를 이용해 단어를 표현할 건지?
 
 - 주변단어 : word2vec
 - 주변단어+n-gram : FastText
 - 주변단어+분포 : Glove
-
-
 
 ### Word2Vec
 
@@ -87,11 +85,11 @@
   - input layer
   - hidden layer
   - output layer
-    - 학습을 하는 단계
+    - 학습을 하는 단계
 
 - 종류
   - CBOW
-    - 여러개의 context words를 사용하여 하나의 target word 예측
+    - 여러개의 context words를 사용하여 하나의 target word 예측
   - skip-gram : 대부분 이 모델을 사용한다.
     - target word로 여러개의 context word 예측
     - 여러개의 데이터가 생성되기 때문에 더 정확한다.
@@ -100,10 +98,10 @@
   - 장점
     - 단어간 유사도 측정
     - 단어간 관계 파악
-    - 벡터 연산을 통한 추론
+    - 벡터 연산을 통한 추론
   - 단점
     - 단어의 subword information 무시
-      - 서울시와 서울역 간의 관계를 모름
+      - 서울시와 서울역 간의 관계를 모름
     - Out of vocabulary
 
 ### Fast Text
@@ -114,7 +112,7 @@
 
 ​	
 
-### 주변 단어만 봐도 충분할까?
+### 주변 단어만 봐도 충분할까?
 
 - 전체 코퍼스의 통계 정보를 고려
 
@@ -125,7 +123,7 @@
 ### Glove
 
 - word2vec이 전체 corpus의 정보를 담지 못한다는 문제
-- 두 단어의 유사도에 통계 정보가 반영
+- 두 단어의 유사도에 통계 정보가 반영
 
 - 내적을 통한 동시 등장 확률
 
@@ -146,7 +144,7 @@
 
 Bag of words 가정 > 전통적 언어모델 > NNLM > RNN > LSTM >Seq2Seq >Attention > Tranformer > BERT
 
-- 기본 철학 복습
+- 기본 철학 복습
   - 빈도
   - 순서
   - 분포
@@ -157,16 +155,16 @@ Bag of words 가정 > 전통적 언어모델 > NNLM > RNN > LSTM >Seq2Seq >Atten
 - 전통적 언어 모델
   - 언어 모델이란? 단어 시퀀스에 확률을 부여한 모델
   - 통계 기반 언어 모델
-  - 단점 : 
+  - 단점 : 
     - 희소문제 (학습 데이터 한계)
     - 장거리 의존 못함(long-range dependency problem)
-    - 단어간 유사도 계산 어려움(이후 분포가정으로 발전)
+    - 단어간 유사도 계산 어려움(이후 분포가정으로 발전)
 
 - NNLM
 
   - Neural Network Language Model (신경망으로 만든 언어 모델)
 
-  - 단어간 유사도를 학습
+  - 단어간 유사도를 학습
 
 ### Transformer Network
 
@@ -190,6 +188,8 @@ Bag of words 가정 > 전통적 언어모델 > NNLM > RNN > LSTM >Seq2Seq >Atten
 
 딥러닝 모델 생성 : text => 숫자 (padding)
 
-모델 학습 (Train &validation)
+모델 학습 (Train &validation)
 
-모델 평가
+모델 평가
+
+- 영화 후기 내용으로 실습
