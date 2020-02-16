@@ -1,6 +1,8 @@
-# WIS
+# TIL
 
-### This place is for recoding What I Study.
+### Today I Learned
+
+### This repository is for recoding What I Study.
 
 <br/>**< 나만의 참고서만들기 >**
 
