@@ -1,4 +1,5 @@
-# TIL
+# TIL : 더 이상 관리하지 않는 repo 입니다.
+
 
 ### Today I Learned
 
